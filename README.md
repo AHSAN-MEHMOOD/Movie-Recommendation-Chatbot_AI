@@ -1,5 +1,5 @@
 CinePredict
-CinePredict is a Flask-based web application delivering AI-powered movie recommendations through an interactive chatbot interface. It leverages SentenceTransformers to encode user story descriptions for semantic similarity matching and spaCy for keyword extraction to enhance recommendation accuracy. Styled with Tailwind CSS, it offers a responsive UI for users to discover films by story or genre/rating preferences.
+CinePredict: Flask web app with AI-powered movie recommendations via chatbot. Uses SentenceTransformers for semantic matching, spaCy for keyword extraction, and Tailwind CSS for a responsive UI. Discover films by story or genre/rating.
 Table of Contents
 
 Features
@@ -13,46 +13,46 @@ Acknowledgments
 
 Features
 
-AI-Driven Recommendations: Utilizes SentenceTransformers (all-mpnet-base-v2) for semantic similarity and spaCy (en_core_web_sm) for keyword extraction to deliver precise movie recommendations.
-Story-Based Recommendations: Users can input a movie plot description, and the AI matches it to similar movies using semantic and keyword analysis.
-Genre & Rating Filters: Filter movies by preferred genre (e.g., Action, Comedy) and minimum rating (e.g., 7.0).
-Responsive Interface: Built with Tailwind CSS for a modern, dark-mode-compatible UI with a clean chatbot design.
-Interactive Chatbot: Provides a user-friendly interface for seamless interaction and movie discovery.
-Data Pipeline: Includes scripts to fetch movie data from TMDB and generate embeddings for recommendations.
+AI-Driven Recommendations: Uses SentenceTransformers (all-mpnet-base-v2) for semantic similarity and spaCy (en_core_web_sm) for keyword extraction.
+Story-Based Matching: Input a plot description to find similar movies.
+Genre & Rating Filters: Filter by genre (e.g., Action) and minimum rating (e.g., 7.0).
+Responsive UI: Styled with Tailwind CSS, supporting dark mode.
+Interactive Chatbot: User-friendly interface for movie discovery.
+Data Pipeline: Scripts to fetch movie data from TMDB and generate embeddings.
 
 Installation
 Prerequisites
 
-Python 3.8 or higher
-pip (Python package manager)
+Python 3.8+
+pip
+Git
+TMDB API key (get one at TMDB)
 Node.js (optional, for Tailwind CSS build if not using CDN)
-Git (for cloning the repository)
-TMDB API key (sign up at TMDB to obtain one)
 
-Setup Instructions
+Setup
 
 Clone the Repository
-git clone https://github.com/AHSAN-MEHMOOD/cinepredict.git
-cd cinepredict
+git clone https://github.com/AHSAN-MEHMOOD/Movie-Recommendation-Chatbot_AI.git
+cd Movie-Recommendation-Chatbot_AI
 
 
-Create and Activate a Virtual Environment
+Create and Activate Virtual Environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
 
-Install Python Dependencies
+Install Dependencies
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 
 
 Fetch Movie Data
 
-Edit fetch_movie_data.py to add your TMDB API key:
-TMDB_API_KEY = "your_tmdb_api_key_here"  # Replace with your TMDB API key
+Add your TMDB API key to fetch_movie_data.py:
+TMDB_API_KEY = "your_tmdb_api_key_here"
 
 
-Run the script to generate movies_cleaned.csv:
+Run:
 python fetch_movie_data.py
 
 
@@ -60,106 +60,103 @@ python fetch_movie_data.py
 
 Generate Embeddings
 
-Run the script to generate embeddings.npy from movies_cleaned.csv:
+Run:
 python generate_embeddings.py
 
 
 
 
-Run the Application
+Run the App
 python app.py
 
 
-Open your browser and navigate to http://localhost:5000.
+Visit http://localhost:5000.
 
 
 
 Usage
 
-Access the Web App
+Open the Web App
 
-Visit http://localhost:5000 to view the CinePredict interface.
-Browse a grid of featured movies with posters, genres, years, ratings, and summaries.
+Navigate to http://localhost:5000 to see featured movies.
 
 
-Interact with the Chatbot
+Use the Chatbot
 
-Click the "CinePredict AI" button (bottom-right corner) to open the chatbot modal.
-Type story to get recommendations based on a plot description (e.g., "A hacker discovers a simulated reality").
-Type genre to filter movies by genre (e.g., "Action") and minimum rating (e.g., "7.0").
-Follow the chatbot prompts to refine your input.
+Click "CinePredict AI" (bottom-right) to open the chatbot.
+Type story and describe a plot (e.g., "A hacker in a simulated reality").
+Type genre to filter by genre (e.g., "Action") and rating (e.g., "7.0").
+Follow prompts to refine your query.
 
 
 View Recommendations
 
-Recommendations are displayed in a styled container, with each movie listed on a separate line, including title and rating (e.g., "- The Matrix (Rating: 8.7)").
-The chatbot supports iterative queries, allowing you to try different stories or genres.
+Movies appear in a styled list, each on a separate line (e.g., "- The Matrix (Rating: 8.7)").
 
 
 
 Project Structure
-cinepredict/
+Movie-Recommendation-Chatbot_AI/
 ├── static/
-│   └── styles.css           # Custom CSS for recommendation styling
-├── templates/
-│   └── index.html           # HTML template with Tailwind CSS and jQuery
+│   blog.html  # HTML template with Tailwind CSS and jQuery
 ├── app.py                   # Flask backend with AI recommendation logic
-├── fetch_movie_data.py      # Script to fetch movie data and create movies_cleaned.csv
-├── generate_embeddings.py   # Script to generate embeddings and create embeddings.npy
-├── movies_cleaned.csv       # Movie dataset (generated, not included)
-├── embeddings.npy           # Precomputed movie embeddings (generated, not included)
+├── fetch_movie_data.py      # Script to fetch movie data from TMDB
+├── generate_embeddings.py   # Script to generate embeddings
+├── movies_cleaned.csv       # Movie dataset (generated)
+├── embeddings.npy           # Precomputed embeddings (generated)
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project documentation
 
 Technologies Used
 
 Backend:
-Flask: Web framework for routing and rendering templates.
-SentenceTransformers (all-mpnet-base-v2): Encodes movie plots for semantic similarity matching.
-spaCy (en_core_web_sm): Extracts keywords for enhanced recommendation accuracy.
-pandas & numpy: Handles movie data and embeddings.
-scikit-learn: Computes cosine similarity for recommendations.
-requests: Fetches movie data from the TMDB API.
+Flask: Web framework
+SentenceTransformers (all-mpnet-base-v2): Semantic similarity
+spaCy (en_core_web_sm): Keyword extraction
+pandas & numpy: Data handling
+scikit-learn: Cosine similarity
+requests: TMDB API calls
 
 
 Frontend:
-Tailwind CSS: Provides responsive, utility-first styling via CDN.
-jQuery: Manages AJAX requests and DOM manipulation for the chatbot.
-HTML/CSS/JavaScript: Structures the UI and handles interactivity.
+Tailwind CSS: Responsive styling via CDN
+jQuery: AJAX and DOM manipulation
+HTML/CSS/JavaScript: UI and interactivity
 
 
 Environment:
-Python 3.8+: Runs the backend logic.
-Browser-compatible: No additional client-side setup required.
+Python 3.8+
+Browser-compatible
 
 
 
 Contributing
-We welcome contributions to enhance CinePredict! To contribute:
 
 Fork the repository.
 
-Create a feature branch:
+Create a branch:
 git checkout -b feature/your-feature
 
 
-Commit your changes:
+Commit changes:
 git commit -m "Add your feature"
 
 
-Push to the branch:
+Push:
 git push origin feature/your-feature
 
 
-Open a pull request on GitHub.
+Open a pull request.
 
 
-Please adhere to PEP 8 for Python code and include relevant tests or documentation updates.
+Adhere to PEP 8 for Python code and include tests/documentation.
 License
-This project is licensed under the MIT License. See the LICENSE file for details.
+MIT License. See LICENSE for details.
 Acknowledgments
 
-Built with Flask, SentenceTransformers, spaCy, and TMDB API.
-Styled using Tailwind CSS for a modern, responsive UI.
-Inspired by movie recommendation systems and datasets like IMDb and TMDB.
+Flask
+SentenceTransformers
+spaCy
+TMDB API
+Tailwind CSS
 
