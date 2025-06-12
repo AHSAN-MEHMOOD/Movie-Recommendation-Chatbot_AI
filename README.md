@@ -1,0 +1,2 @@
+# Movie-Recommendation-Chatbot_AI
+CinePredict is a Flask-based web app delivering AI-powered movie recommendations through a chatbot interface. It uses SentenceTransformers to encode user story descriptions for semantic similarity matching and spaCy for keyword extraction to enhance recommendation accuracy. Styled with Tailwind CSS, it offers a responsive UI for users to discover films by story or genre/rating preferences.
